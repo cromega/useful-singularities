@@ -18,7 +18,7 @@ sudo singularity bootstrap backup-to-aws.img backup-to-aws.bs
 ## Back things up
 
 ```
-tar -cjO /var/spool/mail | singularity exec backup-to-aws.img s3 cp - s3://bucket/emails.tar.bz2
+tar -cjO /var/spool/mail | singularity exec backup-to-aws.img aws s3 cp - s3://bucket/emails.tar.bz2
 ```
 
 ## etc
