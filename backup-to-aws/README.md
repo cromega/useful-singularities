@@ -20,3 +20,11 @@ sudo singularity bootstrap backup-to-aws.img backup-to-aws.bs
 ```
 tar -cjO /var/spool/mail | singularity exec backup-to-aws.img s3 cp - s3://bucket/emails.tar.bz2
 ```
+
+## etc
+
+It's also a great way of installing the aws-cli without littering your system with all the python crap.
+
+```
+alias aws="singularity exec backup-to-aws.img aws"
+```
