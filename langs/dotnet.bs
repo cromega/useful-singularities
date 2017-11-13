@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: microsoft/dotnet:2.0-sdk
+
+%runscript
+  dotnet $@
+
+%files
+
+%environment
+
+
+%post
+
+%test
+  dotnet --version
+
+
