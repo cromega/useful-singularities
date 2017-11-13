@@ -1,0 +1,21 @@
+Bootstrap: docker
+From: ubuntu:17.04
+
+%runscript
+
+%files
+
+%environment
+
+
+%post
+
+dpkg --add-architecture i386
+apt-get update
+apt-get -y install wine32 bash
+
+
+%test
+
+
+
