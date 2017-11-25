@@ -1,0 +1,16 @@
+Bootstrap: docker
+From: debian:stretch
+
+%runscript
+  scw $@
+
+%post
+  apt-get update
+  apt-get -y install wget ca-certificates --no-install-recommends
+  wget https://github.com/scaleway/scaleway-cli/releases/download/v1.14/scw-linux-amd64
+  mv scw-linux-amd64 /usr/local/bin/scw
+  chmod +x /usr/local/bin/scw
+
+%test
+  scw --version
+

@@ -1,0 +1,13 @@
+Bootstrap: docker
+From: ubuntu:zesty
+
+%runscript
+  vagrant $@
+
+%post
+  apt-get update
+  apt-get -y install vagrant --no-install-recommends
+
+%test
+  vagrant --version
+
