@@ -1,0 +1,12 @@
+Bootstrap: docker
+From: alpine:edge
+
+%runscript
+  terraform $@
+
+%post
+  apk update
+  apk add terraform ca-certificates
+
+%test
+  terraform --version
