@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+cmd=$1
+recipe=$2
+
+if [ -e "$cmd" ]; then
+  echo "$cmd exists."
+  exit 1
+fi
+
+singularity image.create $cmd
+sudo singularity build $cmd $recipe
+chmod +x $cmd
