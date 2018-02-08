@@ -1,6 +1,6 @@
 # Useful containers
 
-A collection of [Singularity](http://singularity.lbl.gov/) containers for various sys-admin tasks and installin tools I found useful.
+A collection of [Singularity](http://singularity.lbl.gov/) containers for various sys-admin tasks and installing tools I found useful.
 
 ## Installing a tool
 
