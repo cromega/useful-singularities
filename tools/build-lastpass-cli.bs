@@ -1,0 +1,10 @@
+Bootstrap: docker
+From: ubuntu:artful
+
+%runscript
+  make $@
+
+%post
+  apt-get update
+  apt-get -y install openssl libcurl4-openssl-dev libxml2 libssl-dev libxml2-dev pinentry-curses xclip cmake build-essential pkg-config --no-install-recommends
+

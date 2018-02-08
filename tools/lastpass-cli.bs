@@ -1,0 +1,18 @@
+# it doesn't quite work, the CLI wants to create sockets and stuff, not really a good tool for running in containers
+Bootstrap: docker
+From: alpine:latest
+
+%runscript
+  lpass $@
+
+%post
+  apk update
+  apk add build-base cmake openssl openssl-dev curl curl-dev libxml2 libxml2-dev pinentry git
+  git clone https://github.com/lastpass/lastpass-cli
+  cd lastpass-cli
+  git checkout $(git tag -l --sort=taggerdate | tail -n 1)
+  make
+  mv build/lpass /usr/bin
+
+%test
+  lpass --version
