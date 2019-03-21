@@ -1,12 +1,16 @@
 Bootstrap: docker
-From: alpine:edge
+From: alpine:latest
 
 %runscript
   terraform $@
 
 %post
+  tf_version=0.11.13
   apk update
-  apk add terraform ca-certificates
+  apk add ca-certificates
+  wget https://releases.hashicorp.com/terraform/${tf_version}/terraform_${tf_version}_linux_amd64.zip
+  unzip terraform_${tf_version}_linux_amd64.zip
+  mv terraform /usr/local/bin
 
 %test
   terraform --version

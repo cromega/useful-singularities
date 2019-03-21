@@ -1,0 +1,17 @@
+Bootstrap: docker
+From: alpine:latest
+
+%labels
+  AUTHOR crome@moronia.hu
+
+%runscript
+  exec aws "$@"
+
+%post
+  apk update
+  apk add python3 groff
+  pip3 install --upgrade pip
+  pip3 install --upgrade awscli
+
+%test
+  aws --version
