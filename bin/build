@@ -8,6 +8,5 @@ if [ -e "$cmd" ]; then
   exit 1
 fi
 
-singularity image.create $cmd
 sudo singularity build $cmd $recipe
 chmod +x $cmd
