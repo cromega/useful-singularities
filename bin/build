@@ -8,5 +8,5 @@ if [ -e "$cmd" ]; then
   exit 1
 fi
 
-sudo singularity build $cmd $recipe
+singularity build --fakeroot $cmd $recipe
 chmod +x $cmd
