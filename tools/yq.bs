@@ -1,16 +1,26 @@
 Bootstrap: docker
 From: alpine:latest
-
-%runscript
-  yq $@
+Stage: fetch
 
 %post
   apk update
-  apk add python py2-pip jq
-  pip install --upgrade pip
-  pip install yq
+  apk add jq
+  latest=$(wget -O- https://api.github.com/repos/mikefarah/yq/releases/latest | jq -r .tag_name)
+  wget https://github.com/mikefarah/yq/releases/download/${latest}/yq_linux_amd64 -O yq
+
+Bootstrap: docker
+From: alpine:latest
+Stage: build
+
+%files from fetch
+  yq /usr/bin/
+
+%post
+  chmod +x /usr/bin/yq
 
 %test
   yq --version
-  jq --version
+
+%runscript
+  yq $@
 
